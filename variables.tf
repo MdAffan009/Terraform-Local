@@ -27,3 +27,9 @@ variable "app_revision" {
   type        = string
   default     = "main"
 }
+
+variable "docker_gid" {
+  description = "GID of the docker group on the host machine"
+  type        = string
+  default     = "127"
+}

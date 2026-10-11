@@ -8,6 +8,10 @@ terraform {
       source  = "hashicorp/helm"
       version = "~> 2.0"
     }
+    docker = {
+      source = "kreuzwerker/docker"
+      version = "~> 3.0"
+    }
   }
 }
 
@@ -21,4 +25,8 @@ provider "helm" {
     config_path    = "~/.kube/config"
     config_context = "minikube"
   }
+}
+
+provider "docker" {
+    host = "unix:///var/run/docker.sock"
 }

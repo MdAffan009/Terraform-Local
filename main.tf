@@ -66,3 +66,30 @@ resource "helm_release" "ingress_nginx" {
     value = "NodePort"
   }
 }
+
+resource "docker_container" "jenkins" {
+  name    = "jenkins-blueocean"
+  image   = "robinparker995/jenkins-blueocean:latest"
+  restart = "on-failure"
+  group_add = [var.docker_gid]
+
+  ports {
+    internal = 8080
+    external = 8080
+  }
+
+  ports {
+    internal = 50000
+    external = 50000
+  }
+
+  volumes {
+    volume_name    = "jenkins-data"
+    container_path = "/var/jenkins_home"
+  }
+
+  volumes {
+    host_path      = "/var/run/docker.sock"
+    container_path = "/var/run/docker.sock"
+  }
+}
