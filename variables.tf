@@ -33,3 +33,9 @@ variable "docker_gid" {
   type        = string
   default     = "127"
 }
+
+variable "github_pat" {
+  description = "GitHub Personal Access Token for devops-config access"
+  type        = string
+  sensitive   = true
+}

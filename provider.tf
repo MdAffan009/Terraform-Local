@@ -9,8 +9,12 @@ terraform {
       version = "~> 2.0"
     }
     docker = {
-      source = "kreuzwerker/docker"
+      source  = "kreuzwerker/docker"
       version = "~> 3.0"
+    }
+    kubectl = {
+      source  = "alekc/kubectl"
+      version = "~> 2.0"
     }
   }
 }
@@ -28,5 +32,10 @@ provider "helm" {
 }
 
 provider "docker" {
-    host = "unix:///var/run/docker.sock"
+  host = "unix:///var/run/docker.sock"
+}
+
+provider "kubectl" {
+  config_path    = "~/.kube/config"
+  config_context = "minikube"
 }
